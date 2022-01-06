@@ -6,13 +6,12 @@ let inputValues: Array<string> = fs
   .toString()
   .split("\n");
 
-  var x = 0;
-  var y = 0;
-  var aim = 0;
-
 // TODO v quick and not efficient - tidy up!
 
-// Part 1
+var x = 0;
+var y = 0;
+var aim = 0;
+
 inputValues.forEach( instruction => {
   var array = instruction.split(" ");
   var value = Number(array[1]);
