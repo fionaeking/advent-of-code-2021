@@ -1,11 +1,8 @@
 import * as fs from "fs";
 
-// Define variables
-const filename: string = "input.txt";
-
-// Import the text file into a string and then split each row into a seperate array element
+// Read in input
 let inputValues: Array<number> = fs
-  .readFileSync(filename, "utf8")
+  .readFileSync("input.txt", "utf8")
   .toString()
   .split("\n")
   .map(Number);
