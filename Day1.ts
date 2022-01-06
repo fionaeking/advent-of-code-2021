@@ -1,7 +1,7 @@
 import * as fs from "fs";
 
 // Define variables
-const filename: string = "Day1/input.txt";
+const filename: string = "input.txt";
 
 // Import the text file into a string and then split each row into a seperate array element
 let inputValues: Array<number> = fs
