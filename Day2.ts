@@ -1,5 +1,11 @@
 import * as fs from "fs";
 
+export enum Direction {
+  Forward = "forward",
+  Down = "down",
+  Up = "up",
+}
+
 // Read in input
 let inputValues: Array<string> = fs
   .readFileSync("input.txt", "utf8")
@@ -12,26 +18,25 @@ var x = 0;
 var y = 0;
 var aim = 0;
 
-inputValues.forEach( instruction => {
+inputValues.forEach((instruction) => {
   var array = instruction.split(" ");
+  var direction = array[0];
   var value = Number(array[1]);
-  switch (array[0])
-  {
-    case 'forward':
+  switch (direction) {
+    case Direction.Forward:
       x += value;
       y += aim * value;
       break;
-    case 'down':
+    case Direction.Down:
       // y += value;
       aim += value;
       break;
-    case 'up':
+    case Direction.Up:
       // y -= value;
       aim -= value;
       break;
     default:
       break;
   }
-})
-console.log(x * y);
-
+});
+console.log("Answer: ", x * y);
