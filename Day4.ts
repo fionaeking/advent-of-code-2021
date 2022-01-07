@@ -25,19 +25,24 @@ inputValues.forEach(
 
 let checker = (arr: string | any[], target: any[]) => target.every((v: any) => arr.includes(v));
 
-var winningBoard : number[][] = [];
+// var winningBoard : number[][] = [];
+var losingBoard : number[][] = [];
 var numbersDrawn: number [] = [];
-while (winningBoard.length == 0)
+while (bingoBoards.length > 0)
 {
+
   var newNumber  = numbersToDraw?.shift();
-  if (newNumber) numbersDrawn.push(newNumber);
+  if (newNumber != undefined) numbersDrawn.push(newNumber);
   bingoBoards.forEach(
     bingoBoard => {
       // Test rows
       bingoBoard.forEach(row => {if (checker(numbersDrawn, row))
         {
-          console.log("Bingo!");
-          winningBoard = bingoBoard;
+          //console.log("Bingo!");
+          bingoBoards = bingoBoards.filter(function(value, index, arr){ 
+            return value != bingoBoard;
+        });
+        if (bingoBoards.length == 1) losingBoard = bingoBoards[0];
         }});
       // Test columns
       for (var i = 0; i< bingoBoard.length; i++)
@@ -46,19 +51,28 @@ while (winningBoard.length == 0)
           return (x[i]);
         })))
         {
-          console.log("Bingo!");
-          winningBoard = bingoBoard;
+          //console.log("Bingo!");
+          bingoBoards = bingoBoards.filter(function(value, index, arr){ 
+            return value != bingoBoard;
+        });
+          //winningBoard = bingoBoard;
+          if (bingoBoards.length == 1) losingBoard = bingoBoards[0];
         }
       }
     });
 }
 
-var sum = 0;
+/*var sum = 0;
 winningBoard.flat().forEach(x => {
   if (!numbersDrawn.includes(x)) sum += x;
 })
 var lastNumDrawn = numbersDrawn.pop();
 if (lastNumDrawn) console.log("Part 1 answer:", sum * lastNumDrawn);
+*/
 
-
-
+var sum = 0;
+losingBoard.flat().forEach(x => {
+  if (!numbersDrawn.includes(x)) sum += x;
+})
+var lastNumDrawn = numbersDrawn.pop();
+if (lastNumDrawn) console.log("Answer:", sum * lastNumDrawn);
