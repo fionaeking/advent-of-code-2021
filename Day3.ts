@@ -6,9 +6,14 @@ let inputValues: Array<string> = fs
   .toString()
   .split("\n");
 
+function binary_to_decimal(decimal: number) : number {
+  return Math.pow(2, decimal)
+}
+
 var gammaRate = 0;
 var epsilonRate = 0;
-for (var i = 0; i < inputValues[0].length; i++) {
+var numberLength = inputValues[0].length;
+for (var i = 0; i < numberLength; i++) {
   var sum = inputValues
     .map(function (x) {
       return Number(x[i]);
@@ -18,10 +23,10 @@ for (var i = 0; i < inputValues[0].length; i++) {
     }, 0);
 
   if (sum * 2 > inputValues.length) {
-    gammaRate += Math.pow(2, inputValues[0].length - 1 - i);
+    gammaRate += binary_to_decimal(numberLength - 1 - i);
   } else {
-    epsilonRate += Math.pow(2, inputValues[0].length - 1 - i);
+    epsilonRate += binary_to_decimal(numberLength - 1 - i);
   }
 }
 
-console.log("Part 1 Answer", gammaRate * epsilonRate);
+console.log("Part 1 answer:", gammaRate * epsilonRate);
