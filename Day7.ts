@@ -15,9 +15,9 @@ let inputValues: Array<number> = fs
 
 var medianNum = median(inputValues);
 
-var sum = 0;
+var fuel = 0;
 inputValues.forEach(x => {
-  sum += Math.abs(x-medianNum);
+  fuel += Math.abs(x-medianNum);
 })
 
-console.log("Part 1 answer: ", sum);
+console.log("Part 1 answer: ", fuel);
