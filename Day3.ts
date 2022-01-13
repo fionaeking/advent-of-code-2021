@@ -7,8 +7,8 @@ let inputValues: Array<string> = fs
   .split("\n");
 
 // Part 1
-function binary_to_decimal(decimal: number) : number {
-  return Math.pow(2, decimal)
+function binary_to_decimal(decimal: number): number {
+  return Math.pow(2, decimal);
 }
 
 var gammaRate = 0;
@@ -31,22 +31,31 @@ for (var i = 0; i < numberLength; i++) {
 }
 console.log("Part 1 answer:", gammaRate * epsilonRate);
 
-
-function apply_bit_criteria(inputArray: string[], i: number, most_common_value: boolean)
-{
+function apply_bit_criteria(
+  inputArray: string[],
+  i: number,
+  most_common_value: boolean
+) {
   var sumO2 = inputArray
-  .map(function (x) {
-    return Number(x[i]);
-  })
-  .reduce(function (x, y) {
-    return x + y;
-  }, 0);
-  return (sumO2 * 2 >= inputArray.length) ? inputArray.filter((value) => value[i] == (most_common_value ? '1' : '0')) : inputArray.filter((value) => value[i] == (most_common_value ? '0' : '1'));
+    .map(function (x) {
+      return Number(x[i]);
+    })
+    .reduce(function (x, y) {
+      return x + y;
+    }, 0);
+  return sumO2 * 2 >= inputArray.length
+    ? inputArray.filter((value) => value[i] == (most_common_value ? "1" : "0"))
+    : inputArray.filter((value) => value[i] == (most_common_value ? "0" : "1"));
 }
 
-var clonedInputValues  = [...inputValues];
+var clonedInputValues = [...inputValues];
 for (var i = 0; i < numberLength; i++) {
-  if (inputValues.length > 1) inputValues = apply_bit_criteria(inputValues, i, true);
-  if (clonedInputValues.length > 1) clonedInputValues = apply_bit_criteria(clonedInputValues, i, false);
+  if (inputValues.length > 1)
+    inputValues = apply_bit_criteria(inputValues, i, true);
+  if (clonedInputValues.length > 1)
+    clonedInputValues = apply_bit_criteria(clonedInputValues, i, false);
 }
-console.log("Part 2 answer:", parseInt(inputValues[0], 2) * parseInt(clonedInputValues[0], 2));
+console.log(
+  "Part 2 answer:",
+  parseInt(inputValues[0], 2) * parseInt(clonedInputValues[0], 2)
+);

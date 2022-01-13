@@ -7,9 +7,14 @@ let inputValues: Array<string> = fs
   .split("\n");
 
 var sum = 0;
-inputValues.forEach( row => {
-  row.split('|')[1].trim().split(/\s+/).forEach(digitOut => 
-    { sum += +[2, 3, 4, 7].includes(digitOut.length); })
+inputValues.forEach((row) => {
+  row
+    .split("|")[1]
+    .trim()
+    .split(/\s+/)
+    .forEach((digitOut) => {
+      sum += +[2, 3, 4, 7].includes(digitOut.length);
+    });
 });
 
 console.log("Part 1 answer:", sum);
