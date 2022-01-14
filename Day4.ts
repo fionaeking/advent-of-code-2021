@@ -62,17 +62,12 @@ while (bingoBoards.length > 0) {
   });
 }
 
-/*var sum = 0;
-winningBoard.flat().forEach(x => {
-  if (!numbersDrawn.includes(x)) sum += x;
-})
+/*
+var totalWin = winningBoard.flat().reduce((sum, current) => sum + ((numbersDrawn.includes(current)) ? 0 : current), 0);
 var lastNumDrawn = numbersDrawn.pop();
-if (lastNumDrawn) console.log("Part 1 answer:", sum * lastNumDrawn);
+if (lastNumDrawn) console.log("Part 1 answer:", totalWin * lastNumDrawn);
 */
 
-var sum = 0;
-losingBoard.flat().forEach((x) => {
-  if (!numbersDrawn.includes(x)) sum += x;
-});
+var total = losingBoard.flat().reduce((sum, current) => sum + ((numbersDrawn.includes(current)) ? 0 : current), 0);
 var lastNumDrawn = numbersDrawn.pop();
-if (lastNumDrawn) console.log("Answer:", sum * lastNumDrawn);
+if (lastNumDrawn) console.log("Part 2 answer:", total * lastNumDrawn);
