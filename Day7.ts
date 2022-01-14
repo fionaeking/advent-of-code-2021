@@ -18,10 +18,4 @@ let inputValues: Array<number> = fs
   .map(Number);
 
 var medianNum = median(inputValues);
-
-var fuel = 0;
-inputValues.forEach((x) => {
-  fuel += Math.abs(x - medianNum);
-});
-
-console.log("Part 1 answer: ", fuel);
+console.log("Part 1 answer: ", inputValues.reduce((sum, current) => sum + Math.abs(current - medianNum), 0));
